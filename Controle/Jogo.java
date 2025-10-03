@@ -4,6 +4,9 @@ import Classes.*;
 import Inimigo.EscolheInimigo;
 import Inimigo.TurnoInimigo;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Jogo {
@@ -11,8 +14,9 @@ public class Jogo {
     private int turno = 1;
 
     Scanner scan = new Scanner(System.in);
+    Exp exp = new Exp();
 
-    public void menuInicial() {
+    public void exibirMenuJogo() {
         System.out.println("Em uma arena, existem cinco personagens espalhados...\n" +
                 "1-Ragnar, o Bárbaro.\n" +
                 "2-Merlim, a Maga.\n" +
@@ -30,8 +34,12 @@ public class Jogo {
 
                 Batalha(jogador, inimigo);
 
-                if (jogador.getVida() <= 0) System.out.println("Você perdeu!");
-                else System.out.println("Você venceu!");
+                if (jogador.getVida() <= 0) {
+                    System.out.println("Você perdeu!");
+                } else {
+                    System.out.println("Você venceu!");
+                    exp.acrescentarXp(jogador);
+                }
             }
             case 2 -> {
                 Personagem jogador = new Mago();
@@ -40,8 +48,12 @@ public class Jogo {
 
                 Batalha(jogador, inimigo);
 
-                if (jogador.getVida() <= 0) System.out.println("Você perdeu!");
-                else System.out.println("Você venceu!");
+                if (jogador.getVida() <= 0) {
+                    System.out.println("Você perdeu!");
+                } else {
+                    System.out.println("Você venceu!");
+                    exp.acrescentarXp(jogador);
+                }
             }
             case 3 -> {
                 Personagem jogador = new Arqueiro();
@@ -50,8 +62,12 @@ public class Jogo {
 
                 Batalha(jogador, inimigo);
 
-                if (jogador.getVida() <= 0) System.out.println("Você perdeu!");
-                else System.out.println("Você venceu!");
+                if (jogador.getVida() <= 0) {
+                    System.out.println("Você perdeu!");
+                } else {
+                    System.out.println("Você venceu!");
+                    exp.acrescentarXp(jogador);
+                }
             }
             case 4 -> {
                 Personagem jogador = new Ladino();
@@ -60,8 +76,12 @@ public class Jogo {
 
                 Batalha(jogador, inimigo);
 
-                if (jogador.getVida() <= 0) System.out.println("Você perdeu!");
-                else System.out.println("Você venceu!");
+                if (jogador.getVida() <= 0) {
+                    System.out.println("Você perdeu!");
+                } else {
+                    System.out.println("Você venceu!");
+                    exp.acrescentarXp(jogador);
+                }
             }
             case 5 -> {
                 Personagem jogador = new Druida();
@@ -70,10 +90,16 @@ public class Jogo {
 
                 Batalha(jogador, inimigo);
 
-                if (jogador.getVida() <= 0) System.out.println("Você perdeu!");
-                else System.out.println("Você venceu!");
+                if (jogador.getVida() <= 0) {
+                    System.out.println("Você perdeu!");
+                } else {
+                    System.out.println("Você venceu!");
+                    exp.acrescentarXp(jogador);
+                }
             }
+
             default -> System.out.println("Opção Inválida!");
+
         }
     }
 
@@ -82,7 +108,7 @@ public class Jogo {
             System.out.println("\nTurno " + turno + ":");
             System.out.println("1- Ataque Comum");
             System.out.println("2- Ataque Especial");
-            System.out.println("3- Ver stats do jogador");
+            System.out.println("3- Ver status do jogador");
             System.out.println("4- Analisar inimigo");
 
             opcao = scan.nextInt();
@@ -107,5 +133,54 @@ public class Jogo {
             }
 
         } while (jogador.getVida() > 0 && inimigo.getVida() > 0);
+    }
+    public void salvarExperiencia(Personagem jogador){
+        String caminhoDoArquivo = "data.txt";
+
+        try (PrintWriter escrever = new PrintWriter(new FileWriter(caminhoDoArquivo))) {
+            escrever.println(jogador.getExperiencia());
+        } catch (IOException e) {
+            System.out.println("Ocorreu um erro durante o salvamento do arquivo: " + e.getMessage());
+
+        }
+    }
+
+    public void exibirMenu(Personagem jogador){
+
+        do {
+            System.out.println("""
+                    1. Iniciar Jogo;
+                    2. Salvar Jogo;
+                    3. Regras;
+                    4. Sair.
+                    """);
+            opcao = scan.nextInt();
+
+            switch (opcao) {
+                case 1:
+                    exibirMenuJogo();
+
+                    break;
+                case 2:
+                    salvarExperiencia(jogador);
+
+                    break;
+                case 3:
+                    System.out.println("""
+                            
+                            🐱‍🐉
+                            """);
+
+                    break;
+                case 4:
+                    System.out.println("Adeus! \uD83D\uDC4B");
+                    break;
+                default:
+                    System.out.println("Opção Inválida!");
+
+            }
+        } while(opcao != 4);
+
+
     }
 }

@@ -3,9 +3,11 @@ package Classes;
 public class Personagem {
     private String nome;
     private String classe;
+    private int nivel;
     private int vida;
     private int energia;
     private int defesa;
+    private int experiencia;
     private String especial;
     private double critico;
 
@@ -13,10 +15,12 @@ public class Personagem {
     public Personagem(String nome, String classe, String especial) {
         this.nome = nome;
         this.classe = classe;
+        this.nivel = 1;
         this.especial = especial;
         this.vida = 100;
         this.energia = 50;
         this.defesa = 4;
+        this.experiencia = 0;
         this.critico = 0.3;
     }
 
@@ -65,10 +69,27 @@ public class Personagem {
         this.energia = Math.max(energia, 0);
     }
 
+    public int getExperiencia() {
+        return experiencia;
+    }
+
+    public void setExperiencia(int experiencia) {
+        this.experiencia = experiencia;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
     public void exibirStatus() {
         System.out.println("---------------");
         System.out.println("Nome: " + nome);
         System.out.println("Classe: " + classe);
+        System.out.println("Nível: " + nivel);
         System.out.println("Vida: " + vida);
         System.out.println("Energia: " + energia);
         System.out.println("Especial: " + especial);

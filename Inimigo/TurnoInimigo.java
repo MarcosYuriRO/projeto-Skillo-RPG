@@ -4,6 +4,8 @@ import Classes.Personagem;
 import java.util.Random;
 
 public class TurnoInimigo {
+
+
     private static final Random random = new Random();
 
     public static void agir(Personagem inimigo, Personagem jogador) {
