@@ -3,6 +3,7 @@ package Controle;
 import Classes.*;
 import Inimigo.EscolheInimigo;
 import Inimigo.TurnoInimigo;
+import Salvar.SalvarXp;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,6 +16,9 @@ public class Jogo {
 
     Scanner scan = new Scanner(System.in);
     Exp exp = new Exp();
+    Personagem jogador = new Personagem("a", "b", "c");
+    Scanner scanner = new Scanner(System.in);
+    SalvarXp salvarXp = new SalvarXp();
 
     public void exibirMenuJogo() {
         System.out.println("Em uma arena, existem cinco personagens espalhados...\n" +
@@ -42,7 +46,7 @@ public class Jogo {
                 }
             }
             case 2 -> {
-                Personagem jogador = new Mago();
+                criarMago();
                 Personagem inimigo = EscolheInimigo.escolheInimigo();
                 System.out.println("Seu inimigo é: " + inimigo.getNome() + " (" + inimigo.getClasse() + ")");
 
@@ -134,18 +138,8 @@ public class Jogo {
 
         } while (jogador.getVida() > 0 && inimigo.getVida() > 0);
     }
-    public void salvarExperiencia(Personagem jogador){
-        String caminhoDoArquivo = "data.txt";
 
-        try (PrintWriter escrever = new PrintWriter(new FileWriter(caminhoDoArquivo))) {
-            escrever.println(jogador.getExperiencia());
-        } catch (IOException e) {
-            System.out.println("Ocorreu um erro durante o salvamento do arquivo: " + e.getMessage());
-
-        }
-    }
-
-    public void exibirMenu(Personagem jogador){
+    public void exibirMenuInicial(){
 
         do {
             System.out.println("""
@@ -154,7 +148,7 @@ public class Jogo {
                     3. Regras;
                     4. Sair.
                     """);
-            opcao = scan.nextInt();
+            opcao = scanner.nextInt();
 
             switch (opcao) {
                 case 1:
@@ -162,7 +156,7 @@ public class Jogo {
 
                     break;
                 case 2:
-                    salvarExperiencia(jogador);
+                    salvarXp.salvarExperiencia(jogador);
 
                     break;
                 case 3:
@@ -180,7 +174,14 @@ public class Jogo {
 
             }
         } while(opcao != 4);
-
-
     }
+
+    private void criarBarbaro() {
+        jogador = new Barbaro();
+    }
+
+    public void criarMago(){
+        jogador = new Mago();
+    }
+
 }

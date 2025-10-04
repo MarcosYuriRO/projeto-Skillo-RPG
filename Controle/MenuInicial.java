@@ -1,5 +1,7 @@
 package Controle;
 
+import Classes.Barbaro;
+import Classes.Mago;
 import Classes.Personagem;
 import Salvar.SalvarXp;
 
@@ -12,7 +14,7 @@ public class MenuInicial {
     Jogo jogo = new Jogo();
     SalvarXp salvarXp = new SalvarXp();
 
-    public void exibirMenuInicial(){
+    /*public void exibirMenuInicial(){
 
         do {
             System.out.println("""
@@ -29,7 +31,7 @@ public class MenuInicial {
 
                     break;
                 case 2:
-
+                    salvarXp.salvarExperiencia(jogador);
 
                     break;
                 case 3:
@@ -47,7 +49,13 @@ public class MenuInicial {
 
             }
         } while(opcao != 4);
-
-
     }
+
+    private void criarBarbaro() {
+        jogador = new Barbaro();
+    }
+
+    public void criarMago(){
+        jogador = new Mago();
+    }*/
 }
