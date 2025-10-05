@@ -32,7 +32,7 @@ public class Jogo {
 
         switch (opcao) {
             case 1 -> {
-                Personagem jogador = new Barbaro();
+                criarBarbaro();
                 Personagem inimigo = EscolheInimigo.escolheInimigo();
                 System.out.println("Seu inimigo é: " + inimigo.getNome() + " (" + inimigo.getClasse() + ")");
 
@@ -60,7 +60,7 @@ public class Jogo {
                 }
             }
             case 3 -> {
-                Personagem jogador = new Arqueiro();
+                criarArqueiro();
                 Personagem inimigo = EscolheInimigo.escolheInimigo();
                 System.out.println("Seu inimigo é: " + inimigo.getNome() + " (" + inimigo.getClasse() + ")");
 
@@ -74,7 +74,7 @@ public class Jogo {
                 }
             }
             case 4 -> {
-                Personagem jogador = new Ladino();
+                criarLadino();
                 Personagem inimigo = EscolheInimigo.escolheInimigo();
                 System.out.println("Seu inimigo é: " + inimigo.getNome() + " (" + inimigo.getClasse() + ")");
 
@@ -88,7 +88,7 @@ public class Jogo {
                 }
             }
             case 5 -> {
-                Personagem jogador = new Druida();
+                criarDruida();
                 Personagem inimigo = EscolheInimigo.escolheInimigo();
                 System.out.println("Seu inimigo é: " + inimigo.getNome() + " (" + inimigo.getClasse() + ")");
 
@@ -180,8 +180,19 @@ public class Jogo {
         jogador = new Barbaro();
     }
 
-    public void criarMago(){
+    private void criarMago(){
         jogador = new Mago();
     }
 
+    private void criarArqueiro(){
+        jogador = new Arqueiro();
+    }
+
+    private void criarLadino(){
+        jogador = new Ladino();
+    }
+
+    private void criarDruida(){
+        jogador = new Druida();
+    }
 }
